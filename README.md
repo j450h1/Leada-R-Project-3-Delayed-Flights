@@ -25,4 +25,4 @@ A little bit of googling, shows that DCA is Ronald Reagan Washington National Ai
 I don't think it is a coincidence that the White House and the United States Capital are miles away! (of course additional
 analysis would be needed to draw any further conclusions)
 
-3. ####See R spreadsheet for final output and R file for data munging. 
+3. ####See Excel spreadsheet for final output and R file for data munging. 
