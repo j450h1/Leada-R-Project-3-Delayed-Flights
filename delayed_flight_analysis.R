@@ -65,6 +65,33 @@ df2$ProbDelay[1] #0.3478391
 #DepTime - Day Time (0501 to 1700), Night Time (1701 to 2400), or Red Eye (0000 to 0500) UniqueCarrier - Carrier (20)
 #For example, for an AA day time flight on the weekday, the percentage of delayed flights was ~29.3%.
 
+View(df)
+length(unique(df$UniqueCarrier)) #20
+table(df$UniqueCarrier)
+#Convert numerical data to factors
+df$DayOfWeekName <- factor(df$DayOfWeek)
+levels(df$DayOfWeekName) <- list(Weekday = 1:5, Weekend  = 6:7)
+df$DepTimeName <- factor(df$DepTime)
+levels(df$DepTimeName) <- list(DayTime = 0501:1700, NightTime = 1701:2400, RedEye = 0000:0500)
 
+#Let's create a new column to see whether there is a delay or not
+df$IsDelay <-  (df$DepDelay > 0 | df$ArrDelay > 0)
+mode(df$IsDelay) <- "integer" #Convert logical vector into numeric before aggregation
 
+df$CountFlights <- 1 #Needed later to count total flights 
 
+df3 <- aggregate(IsDelay~UniqueCarrier+DayOfWeekName +DepTimeName, data=df, sum, na.rm=TRUE)
+df4 <- aggregate(CountFlights~UniqueCarrier+DayOfWeekName +DepTimeName, data=df, sum, na.rm=TRUE)
+View(df3)
+View(df4)
+#Both dataframes are in exact same order, so we can do cbind instead of merge
+df5 <- cbind(df3,df4$CountFlights)
+colnames(df5)[colnames(df5)=="df4$CountFlights"] <- "CountFlights" #rename column
+#Figure out the percentage
+df5$PercentDelays <- round(df5IsDelay/df5$CountFlights,digits = 2) #round to 2 digits
+#Remove 2 columns (4,5) that were used to calculate percentage
+df5 <- df5[c(1:3,6)]
+View(df5)
+#Export as a spreadsheet
+library(xlsx)
+write.xlsx(df5, "problem3_spreadsheet.xlsx", row.names=FALSE)
