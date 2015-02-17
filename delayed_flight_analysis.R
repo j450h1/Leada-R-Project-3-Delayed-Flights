@@ -88,7 +88,7 @@ View(df4)
 df5 <- cbind(df3,df4$CountFlights)
 colnames(df5)[colnames(df5)=="df4$CountFlights"] <- "CountFlights" #rename column
 #Figure out the percentage
-df5$PercentDelays <- round(df5IsDelay/df5$CountFlights,digits = 2) #round to 2 digits
+df5$PercentDelays <- round(df5$IsDelay/df5$CountFlights,digits = 2) #round to 2 digits
 #Remove 2 columns (4,5) that were used to calculate percentage
 df5 <- df5[c(1:3,6)]
 View(df5)
