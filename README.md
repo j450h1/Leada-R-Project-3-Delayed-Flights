@@ -9,8 +9,20 @@ If ArrDelay > 0, then count as a delayed flight to Origin airport.
 If DepDelay > 0, then count as a delayed flight to Dest airport.
 Total delayed flights equals the sum of the two above.
 Probability of delay equals total delayed flights divided by total flights (Origin & Dest) that go through that airport.
+
 Problem 3: Create a spreadsheet of data which calculates the historical probability of flight delay in each of the twenty carriers based off of two characteristics.
 DayofWeek - Weekday (1,2,3,4,5) or Weekend (6,7)
 DepTime - Day Time (0501 to 1700), Night Time (1701 to 2400), or Red Eye (0000 to 0500)
 UniqueCarrier - Carrier (20)
 For example, for an AA day time flight on the weekday, the percentage of delayed flights was ~29.3%.
+
+ANSWERS (see R file for details):
+
+1. OGD is in Dest column, but not in Origin (I think question was misphrased)
+
+2. DCA, with a 34.8% chance of a delay is the Airport with the lowest chance of a delayed flight.
+A little bit of googling, shows that DCA is Ronald Reagan Washington National Airport in Arlington, VA
+I don't think it is a coincidence that the White House and the United States Capital are miles away! (of course additional
+analysis would be needed to draw any further conclusions)
+
+3. In Progress 
